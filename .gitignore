@@ -1,0 +1,8 @@
+# Ignore macOS system files used to store folder metadata
+.DS_Store
+
+# Ignore Python bytecode cache
+__pycache__/
+*.py[cod]
+*$py.class
+
