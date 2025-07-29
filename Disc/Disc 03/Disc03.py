@@ -15,5 +15,25 @@ def swipe(n):
     else:
         "*** YOUR CODE HERE ***"
         print(n % 10)
-        swipe(n // 10)# µİ
-        print(n % 10)# ¹é
+        swipe(n // 10)
+        print(n % 10)
+
+def is_prime(n):
+    """Returns True if n is a prime number and False otherwise.
+    >>> is_prime(2)
+    True
+    >>> is_prime(16)
+    False
+    >>> is_prime(521)
+    True
+    """
+    "*** YOUR CODE HERE ***"
+    def f(i):
+        if i >= n:
+            return True
+        elif n % i == 0:
+            return False
+        else:
+            return f(i + 1)
+    return f(2)
+    
