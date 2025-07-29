@@ -61,13 +61,26 @@ def hailstone(n):
     else:
         return odd(n)
 
-def even(n):
+def even(n): # if it is even, make a recursion and add one more than the rest of the length
     return hailstone(n // 2) + 1
 
-def odd(n):
+def odd(n):# if it is odd, make clear if it is a base case
     "*** YOUR CODE HERE ***"
     if n == 1:
         return 1
     else:
         return hailstone(3 * n + 1) + 1
 
+
+def skip_factorial(n):
+    """Return the product of positive integers n * (n - 2) * (n - 4) * ...
+
+    >>> skip_factorial(5) # 5 * 3 * 1
+    15
+    >>> skip_factorial(8) # 8 * 6 * 4 * 2
+    384
+    """
+    if n - 2 <= 0:# the base case
+        return n
+    else:
+        return n * skip_factorial(n - 2)
