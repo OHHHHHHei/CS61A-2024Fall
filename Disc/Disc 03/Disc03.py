@@ -15,8 +15,8 @@ def swipe(n):
     else:
         "*** YOUR CODE HERE ***"
         print(n % 10)
-        swipe(n // 10)
-        print(n % 10)
+        swipe(n // 10) # go down
+        print(n % 10) # go up
 
 def is_prime(n):
     """Returns True if n is a prime number and False otherwise.
@@ -29,11 +29,45 @@ def is_prime(n):
     """
     "*** YOUR CODE HERE ***"
     def f(i):
-        if i >= n:
+        if i >= n: # no factor between i and n, it is a prime number
             return True
-        elif n % i == 0:
+        elif n % i == 0: # if there is a factor between i and n, then it is not be a prime number
             return False
         else:
-            return f(i + 1)
-    return f(2)
+            return f(i + 1) # recursive
+    return f(2) # call the inner function
     
+def hailstone(n):
+    """Print out the hailstone sequence starting at n, 
+    and return the number of elements in the sequence.
+    >>> a = hailstone(10)
+    10
+    5
+    16
+    8
+    4
+    2
+    1
+    >>> a
+    7
+    >>> b = hailstone(1)
+    1
+    >>> b
+    1
+    """
+    print(n)
+    if n % 2 == 0:
+        return even(n)
+    else:
+        return odd(n)
+
+def even(n):
+    return hailstone(n // 2) + 1
+
+def odd(n):
+    "*** YOUR CODE HERE ***"
+    if n == 1:
+        return 1
+    else:
+        return hailstone(3 * n + 1) + 1
+
