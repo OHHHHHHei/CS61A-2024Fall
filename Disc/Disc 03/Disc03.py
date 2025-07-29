@@ -15,5 +15,5 @@ def swipe(n):
     else:
         "*** YOUR CODE HERE ***"
         print(n % 10)
-        swipe(n // 10)
-        print(n % 10)
+        swipe(n // 10)# ตÝ
+        print(n % 10)# น้
