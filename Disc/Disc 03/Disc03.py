@@ -127,3 +127,25 @@ def has_seven(n):
         return True
     else:
         return has_seven(n // 10)
+
+# write any code you want
+from karel.stanfordkarel import *
+def turn_around():
+    turn_left()
+    turn_left()
+
+def move_back():
+    turn_around()
+    move()
+    turn_around()
+
+def find_middle_recursive():
+    if front_is_clear():
+        move()
+        if front_is_clear():
+            move()
+            find_middle_recursive()
+            move_back()
+
+def main():
+    find_middle_recursive()
