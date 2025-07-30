@@ -144,8 +144,8 @@ def find_middle_recursive():
         move()
         if front_is_clear():
             move()
-            find_middle_recursive()
-            move_back()
+            find_middle_recursive() # go down
+            move_back() # go up
 
 def main():
     find_middle_recursive()
