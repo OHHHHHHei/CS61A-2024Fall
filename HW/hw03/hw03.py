@@ -130,6 +130,37 @@ def count_dollars(total):
     True
     """
     "*** YOUR CODE HERE ***"
+    def helper(total, max_bill):
+        # base case
+        if total == 0:
+            return 1
+        if total < 0 or max_bill == None: 
+            return 0
+    
+        # use current max bill
+        ues_the_cur = helper(total - max_bill, max_bill)
+        # use the smaller max bill
+        use_the_smaller = helper(total, next_smaller_dollar(max_bill))
+        # return the final result
+        return ues_the_cur + use_the_smaller
+
+    
+    # find the initial max bill
+    if total >= 100:
+        max_bill = 100
+    elif total >= 50:
+        max_bill = 50
+    elif total >= 20:
+        max_bill = 20
+    elif total >= 10:
+        max_bill = 10
+    elif total >= 5:
+        max_bill = 5
+    else:
+        max_bill = 1
+
+    # call the function
+    return helper(total, max_bill)
 
 
 def next_larger_dollar(bill):
