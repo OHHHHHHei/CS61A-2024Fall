@@ -53,7 +53,13 @@ def digit_distance(n):
     True
     """
     "*** YOUR CODE HERE ***"
-
+    if n // 10 == 0: # base case
+        return 0
+    else: # recursion
+        first = n % 10
+        second = (n // 10) % 10
+        sum = abs(first - second)
+        return digit_distance(n // 10) + sum
 
 def interleaved_sum(n, odd_func, even_func):
     """Compute the sum odd_func(1) + even_func(2) + odd_func(3) + ..., up
@@ -77,6 +83,17 @@ def interleaved_sum(n, odd_func, even_func):
     True
     """
     "*** YOUR CODE HERE ***"
+    def f(k):
+
+        if k == n:# base case
+            return odd_func(k)
+        if k == n - 1: # base case
+            return odd_func(k) + even_func(k + 1)
+        
+        result = odd_func(k) + even_func(k + 1)
+        return result + f(k + 2) # recursion
+    
+    return f(1)# call the function
 
 
 def next_smaller_dollar(bill):
