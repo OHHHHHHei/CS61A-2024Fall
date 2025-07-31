@@ -197,7 +197,24 @@ def count_dollars_upward(total):
     True
     """
     "*** YOUR CODE HERE ***"
+    def helper(total, min_bill):
+        # base case
+        if total == 0:
+            return 1
+        if total < 0 or min_bill is None:
+            return 0
+    
+        # use current min bill
+        ues_the_cur = helper(total - min_bill, min_bill)
+        # use the smaller max bill
+        use_the_larger = helper(total, next_larger_dollar(min_bill))
+        # return the final result
+        return ues_the_cur + use_the_larger
 
+    # call the function
+    return helper(total, 1)
+
+ 
 
 def print_move(origin, destination):
     """Print instructions to move a disk."""
