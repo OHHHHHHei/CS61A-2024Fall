@@ -67,6 +67,29 @@ def about(subject):
 
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
+    # not a pythonic code
+    # def inner(paragraphs):
+    #     words = []
+    #     words += split(remove_punctuation(lower(paragraphs))) # transfer the paragraphs to be comparable
+
+    #     for i in range(len(subject)): # check if has same words
+    #         for j in range(len(words)):
+    #             if subject[i] == words[j]:
+    #                 return True
+    #     return False
+    
+    # return inner
+
+    # a pythonic code
+    def inner(paragraphs):
+        words = split(remove_punctuation(lower(paragraphs)))
+
+        for subject_word in subject:
+            if subject_word in words:
+                return True
+        return False
+    
+    return inner
     # END PROBLEM 2
 
 
@@ -97,6 +120,24 @@ def accuracy(typed, source):
     source_words = split(source)
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    length_typed = len(typed_words)
+    length_source = len(source_words)
+
+    if length_typed == 0 and length_source == 0:
+        return 100.0
+    if length_typed == 0 and length_source != 0:
+        return 0.0
+    if length_source == 0:
+        return 0.0
+    
+    length = min(length_source, length_typed)
+
+    same_count = 0
+    for i in range(length):
+        if typed_words[i] == source_words[i]:
+            same_count += 1
+
+    return same_count / length_typed * 100
     # END PROBLEM 3
 
 
