@@ -221,7 +221,7 @@ def autocorrect(typed_word, word_list, diff_function, limit):
     if typed_word in word_list:
         return typed_word
     
-    #set a huge min_diff
+    #not a pythonic code
     # min_diff = 1000
     # index = 0
     # for i in range(len(word_list)):
@@ -233,6 +233,7 @@ def autocorrect(typed_word, word_list, diff_function, limit):
     # else:
     #     return word_list[index]
 
+    # a pythonic code
     best_word = min(word_list, key = lambda w: diff_function(typed_word, w, limit))
     if diff_function(typed_word, best_word, limit) > limit:
         return typed_word
@@ -263,7 +264,25 @@ def furry_fixes(typed, source, limit):
     5
     """
     # BEGIN PROBLEM 6
-    assert False, 'Remove this line'
+    # early pruning
+    def check(typed, source, count):
+        # early pruning
+        if count > limit:
+            return limit + 1
+        
+        # base case
+        if len(typed) == 0 or len(source) == 0:
+            # calculate the difference between two strings
+            return count + abs(len(typed) - len(source))
+        
+        if typed[0] != source[0]:
+            count += 1
+
+        # recusion
+        return check(typed[1:], source[1:], count)
+
+    # call the function
+    return check(typed, source, 0)
     # END PROBLEM 6
 
 
