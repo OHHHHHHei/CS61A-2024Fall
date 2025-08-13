@@ -307,6 +307,7 @@ def minimum_mewtations(typed, source, limit):
     if limit < 0:
         return 1
 
+    # a pythonic code
     if not typed or not source: # Base cases should go here, you may add more base cases as needed.
         # BEGIN
         "*** YOUR CODE HERE ***"
@@ -374,6 +375,17 @@ def report_progress(typed, source, user_id, upload):
     """
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    count = 0
+    
+    for i in range(len(typed)):
+        if typed[i] == source[i]:
+            count += 1
+        else: 
+            break   
+
+    progress = count / len(source)
+    upload({'id': user_id, 'progress': progress})
+    return progress
     # END PROBLEM 8
 
 
