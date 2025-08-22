@@ -408,8 +408,18 @@ def time_per_word(words, timestamps_per_player):
     [[6, 3, 6, 2], [10, 6, 1, 2]]
     """
     tpp = timestamps_per_player  # A shorter name (for convenience)
-    # BEGIN PROBLEM 9
-    times = []  # You may remove this line
+    # BEGIN PROBLEM 
+    # not a pythonic code
+    # times = []  # You may remove this line
+    # for i in range(len(tpp)):
+    #     inner_time = []
+    #     for j in range(len(tpp[i]) - 1):
+    #         k = j + 1
+    #         inner_time += [tpp[i][k] - tpp[i][j]]
+    #     times += [inner_time]
+
+    # a pythonic code
+    times = [[end - start for start, end in zip(p, p[1:])] for p in tpp]
     # END PROBLEM 9
     return {'words': words, 'times': times}
 
