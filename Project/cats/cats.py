@@ -447,6 +447,12 @@ def fastest_words(words_and_times):
     word_indices = range(len(words))    # contains an *index* for each word
     # BEGIN PROBLEM 10
     "*** YOUR CODE HERE ***"
+    fastest_words_per_player = [[] for player in player_indices] # bulid empty list with the same number as player number
+    for i in word_indices: # go through all the words
+        times_for_word = [(get_time(times, player, i), player)for player in player_indices] # bulid the (time, player)tuple list
+        fastest_time, fastest_player = min(times_for_word) # find the fastest
+        fastest_words_per_player[fastest_player].append(words[i]) # add the word to the matching list
+    return fastest_words_per_player
     # END PROBLEM 10
 
 
