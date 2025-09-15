@@ -56,6 +56,21 @@ def deep_map(f, s):
     True
     """
     "*** YOUR CODE HERE ***"
+    # index = 0
+    # for element in s:
+    #     if type(element) == list:
+    #         deep_map(f, element)
+    #         index = index + 1
+    #     else:
+    #         s[index] = f(element)
+    #         index = index + 1
+
+    #a pythonic code
+    for i, element in enumerate(s):
+        if type(element) == list:
+            deep_map(f,element)
+        else:
+            s[i] = f(element)
     
 
 HW_SOURCE_FILE=__file__
