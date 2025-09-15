@@ -13,6 +13,24 @@ def shuffle(s):
     """
     assert len(s) % 2 == 0, 'len(seq) must be even'
     "*** YOUR CODE HERE ***"
+    # method 1
+
+    # first_part_start = 0
+    # second_part_start = len(s) // 2
+    # result = []
+    # while second_part_start < len(s):
+    #     result = result +[s[first_part_start]] + [s[second_part_start]]
+    #     first_part_start = first_part_start + 1
+    #     second_part_start = second_part_start + 1
+    # return result
+
+    # a pythonic code
+    mid = len(s) // 2
+    result = []
+    for i in range(mid):
+        result.append(s[i])
+        result.append(s[mid + i])
+    return result
 
 
 def deep_map(f, s):
@@ -38,7 +56,7 @@ def deep_map(f, s):
     True
     """
     "*** YOUR CODE HERE ***"
-
+    
 
 HW_SOURCE_FILE=__file__
 
