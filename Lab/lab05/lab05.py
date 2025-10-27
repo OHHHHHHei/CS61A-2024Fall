@@ -162,19 +162,21 @@ def sprout_leaves(t, leaves):
           2
     """
     "*** YOUR CODE HERE ***"
-    #make leaves become a tree
+    # make leaves become a tree
     tree_leaves = []
     for leave in leaves:
         tree_leaves = tree_leaves + [tree(leave)]
 
+    # base case
     if is_leaf(t):
         return tree(label(t), tree_leaves)
 
-    new_branch = []
+    # recursion
+    new_branches = []
     for branch in branches(t):
-            new_branch = new_branch + [sprout_leaves(branch,leaves)]
+            new_branches = new_branches + [sprout_leaves(branch,leaves)]
     
-    return tree(label(t), new_branch)
+    return tree(label(t), new_branches)
 
 
 def partial_reverse(s, start):
@@ -190,8 +192,9 @@ def partial_reverse(s, start):
     [1, 2, 7, 6, 5, 3, 4]
     """
     "*** YOUR CODE HERE ***"
-
-
+    for i in range(start, start + (len(s) - start) // 2):
+        s[i], s[len(s) - 1 - i + start] = s[len(s) - 1 - i + start], s[i]
+    return s
 
 # Tree Data Abstraction
 
