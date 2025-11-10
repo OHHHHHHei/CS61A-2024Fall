@@ -165,6 +165,8 @@ class ThrowerAnt(Ant):
     implemented = True
     damage = 1
     # ADD/OVERRIDE CLASS ATTRIBUTES HERE
+    lower_bound = 0
+    upper_bound = float('inf')
     food_cost = 3
 
     def nearest_bee(self):
@@ -174,7 +176,14 @@ class ThrowerAnt(Ant):
         This method returns None if there is no such Bee (or none in range).
         """
         # BEGIN Problem 3 and 4
-        return random_bee(self.place.bees) # REPLACE THIS LINE
+        step = 0
+        now_place = self.place
+        while now_place.is_hive == False and now_place != None:
+            if now_place.bees != [] and self.lower_bound <= step <= self.upper_bound:
+                return random_bee(now_place.bees)
+            now_place = now_place.entrance
+            step += 1
+        return None
         # END Problem 3 and 4
 
     def throw_at(self, target):
@@ -205,8 +214,13 @@ class ShortThrower(ThrowerAnt):
     name = 'Short'
     food_cost = 2
     # OVERRIDE CLASS ATTRIBUTES HERE
+    upper_bound = 3
     # BEGIN Problem 4
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
+
+
+
+
     # END Problem 4
 
 
@@ -216,8 +230,9 @@ class LongThrower(ThrowerAnt):
     name = 'Long'
     food_cost = 2
     # OVERRIDE CLASS ATTRIBUTES HERE
+    lower_bound = 5
     # BEGIN Problem 4
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 4
 
 
@@ -229,7 +244,8 @@ class FireAnt(Ant):
     food_cost = 5
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 5
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
+
     # END Problem 5
 
     def __init__(self, health=3):
@@ -245,6 +261,15 @@ class FireAnt(Ant):
         """
         # BEGIN Problem 5
         "*** YOUR CODE HERE ***"
+        place = self.place
+        Ant.reduce_health(self, amount)
+
+        for bee in list(place.bees):
+            bee.reduce_health(amount)
+        
+        if self.health <= 0:
+            for bee in list(place.bees):
+                bee.reduce_health(self.damage)
         # END Problem 5
 
 # BEGIN Problem 6
